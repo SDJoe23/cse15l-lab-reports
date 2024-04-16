@@ -5,6 +5,59 @@
 Welcome to Lab Report 2, where we dive into the intricacies of our `ChatServer`'s interactions, tracking the flow of messages and observing the underlying mechanics of our Java server in action.
 
 ### Code 
+```
+import java.io.IOException;
+import java.net.URI;
+class ChatHandler implements URLHandler {
+    // The state of the server: a StringBuilder to accumulate chat messages
+    StringBuilder chatHistory = new StringBuilder();
+
+    public String handleRequest(URI url) {
+        if (url.getPath().equals("/")) {
+            return chatHistory.length() == 0 ? "No messages yet." : chatHistory.toString();
+        } else if (url.getPath().contains("/add-message")) {
+            String[] parameters = url.getQuery().split("&");
+            String user = null;
+            String message = null;
+            for (String param : parameters) {
+                String[] keyValue = param.split("=");
+                if (keyValue[0].equals("user")) {
+                    user = keyValue[1];
+                } else if (keyValue[0].equals("s")) {
+                    message = keyValue[1];
+                }
+            }
+
+            if (user != null && message != null) {
+                chatHistory.append(user).append(": ").append(message).append("\n");
+                return chatHistory.toString(); // Return the updated chat history
+            } else {
+                return "Invalid request. User and message parameters are required.";
+            }
+        } else {
+            return "404 Not Found!";
+        }
+    }
+}
+class ChatServer {
+    public static void main(String[] args) throws IOException {
+        if (args.length == 0) {
+            System.out.println("Missing port number! Try any number between 1024 to 49151");
+            return;
+        }
+
+        int port = Integer.parseInt(args[0]);
+
+        Server.start(port, new ChatHandler());
+    }
+}
+```
+I'm also using `Server.java`, which is provided in previous labs. After I run following code
+```
+josephwhiteman@Josephs-MacBook-Pro-3 ~/wavelet $ javac Server.java ChatServer.java
+josephwhiteman@Josephs-MacBook-Pro-3 ~/wavelet $ java ChatServer 4000
+Server Started!
+```
 
 
 
@@ -27,23 +80,7 @@ Not long after, yash joined the chat, adding to the conversation:
 - **Arguments I Handled**: The `URI url` was provided with `new URI("/add-message?s=How are you&user=yash")`.
 - **Changes in My Fields**: My `chatMessages` string now included "jpolitz: Hello\nyash: How are you\n".
 
-### Interaction 3: Joseph Introduces Himself
-Then I, Joseph, decided to join my own server:
 
-
-- **URL Accessed**: `/add-message?s=Hello, my name is Joseph!&user=Joseph`
-- **Method Called**: My `handleRequest(URI url)` method was consistently reliable.
-- **Arguments I Handled**: I provided the `URI url` with `new URI("/add-message?s=Hello, my name is Joseph!&user=Joseph")`.
-- **Changes in My Fields**: My `chatMessages` string was updated to include "Joseph: Hello, my name is Joseph!\n".
-
-### Interaction 4: FactBot's Fun Fact
-Finally, FactBot shared an interesting fact with everyone:]
-
-
-- **URL Accessed**: `/add-message?s=Did you know the Moon moves away from Earth by 4cm every year?&user=FactBot`
-- **Method Called**: Again, `handleRequest(URI url)` in `Handler` was called into service.
-- **Arguments I Handled**: I took the `URI url` argument with `new URI("/add-message?s=Did you know the Moon moves away from Earth by 4cm every year?&user=FactBot")`.
-- **Changes in My Fields**: My `chatMessages` string expanded to include "FactBot: Did you know the Moon moves away from Earth by 4cm every year?\n".
 
 
 In each of these exchanges, the `handleRequest` method diligently parses the incoming request's URL, teases apart the user and message details, and meticulously updates the `chatMessages` field to reflect the ongoing conversation. This field acts as a living record, charting the ebb and flow of our server's dialogues.
