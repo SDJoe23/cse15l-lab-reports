@@ -10,10 +10,10 @@ This revised JUnit test introduces a scenario where the program fails due to inc
 
 ```java
 @Test
-public void testReverseInPlaceEvenArray() {
-    int[] input1 = {1, 2, 3, 4};
+public void testReverseInPlace2() {
+    int[] input1 = { 4,3 };
     ArrayExamples.reverseInPlace(input1);
-    assertArrayEquals(new int[]{4, 3, 2, 1}, input1);
+    assertArrayEquals(new int[]{ 3, 4 }, input1);
 }
 ```
 ## An Input That Doesn't Induce a Failure
@@ -21,17 +21,17 @@ public void testReverseInPlaceEvenArray() {
 This updated test presents a scenario where the program functions correctly, dealing with an array containing an odd number of elements.
 
 ```java
-@Test
-public void testReverseInPlaceOddArray() {
-    int[] input1 = {5, 6, 7, 8, 9};
+@Test 
+public void testReverseInPlace() {
+    int[] input1 = { 3 };
     ArrayExamples.reverseInPlace(input1);
-    assertArrayEquals(new int[]{9, 8, 7, 6, 5}, input1);
+    assertArrayEquals(new int[]{ 3 }, input1);
 }
 ```
 ## Symptom
 
 The symptom of the bug is visually represented by the JUnit test output, which clearly indicates a failure in the testReverseInPlace2 method. The expected outcome does not match the actual result produced by the program under test.
-![Image](Lab3pic1.png)
+
 
 ## Debug
 
@@ -52,19 +52,11 @@ The corrected code fixes the bug by properly swapping elements from both ends to
 
 ```java
 static void reverseInPlace(int[] arr) {
-    int left = 0; // Start of the array
-    int right = arr.length - 1; // End of the array
-
-    while(left < right) {
-        // Swap elements at left and right indices
-        int temp = arr[left];
-        arr[left] = arr[right];
-        arr[right] = temp;
-
-        // Move towards the center
-        left++;
-        right--;
-    }
+  for(int i = 0; i < arr.length / 2; i++) {
+    int temp = arr[i];
+    arr[i] = arr[arr.length - i - 1];
+    arr[arr.length - i - 1] = temp;
+  }
 }
 ```
 ### Why the Fix Addresses the Issue
