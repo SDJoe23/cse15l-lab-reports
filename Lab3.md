@@ -31,7 +31,7 @@ public void testReverseInPlace() {
 ## Symptom
 
 The symptom of the bug is visually represented by the JUnit test output, which clearly indicates a failure in the testReverseInPlace2 method. The expected outcome does not match the actual result produced by the program under test.
-
+![Image](Lab3-1.png)
 
 ## Debug
 
@@ -62,6 +62,8 @@ static void reverseInPlace(int[] arr) {
 ### Why the Fix Addresses the Issue
 
 The updated code addresses the bug by incorporating a while loop that continues swapping elements until it reaches the center of the array. This method works correctly for arrays with both even and odd numbers of elements. The use of `left` and `right` indices ensures that each element is only swapped once, preventing the mistake in the original code where elements were being overwritten or not swapped correctly. This solution is robust, guaranteeing the accurate reversal of the array by iteratively moving inwards from both ends, thus rectifying the previous logic flaw.
+
+![Image](Lab3-2.png)
 
 
 # Part 2 - Researching Commands
