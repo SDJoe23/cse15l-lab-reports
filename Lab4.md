@@ -99,7 +99,7 @@ Pressed: j a v a Space - c p Space . : " l i b / * " Space o r g . j u n i t . r
 
 ![Image]()
 
-## Step 11: Commit and Push Changes
+## Step 9: Commit and Push Changes
 Lastly, I committed the changes and pushed them to the GitHub repository.
 
 Commands:
