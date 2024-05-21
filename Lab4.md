@@ -10,7 +10,7 @@ Use SSH to connect to your ieng6 server. This is where you'll be performing your
 ssh jwhiteman@ieng6.ucsd.edu
 Pressed: s s h Space j w h i t e m a n @ i e n g 6 . u c s d . e d u <Enter>
 ```
-![Image]()
+![Image](Lab4-1.png)
 
 This command securely connected me to the ieng6-202 server where I could begin my work.
 
@@ -22,7 +22,7 @@ After successfully logging into the ieng6 server, you'll clone the repository. T
 git clone https://github.com/SDJoe23/Lab7
 Pressed: g i t Space c l o n e Space h t t p s: // g i t h u b . c o m / S D J o e 2 3 / L a b 7  <Enter>
 ```
-![Image]()
+![Image](Lab4-2.png)
 
 The repository was then successfully cloned into my workspace.
 
@@ -34,7 +34,7 @@ Once the repository is cloned, you need to change into the new directory that wa
 cd Lab7/
 Pressed: c d Space L a b 7 / <Enter>
 ```
-![Image]()
+![Image](Lab4-3.png)
 
 Changes your current directory to the lab7 directory that contains your cloned repository.Now in the lab7 directory, I could manage and edit the project files.
 
@@ -53,7 +53,7 @@ Compiles your Java files, setting the classpath to include the necessary JUnit a
 
 Before fixing the code, I needed to run the unit tests to see the failure.
 
-![Image]()
+![Image](Lab4-3.png)
 
 **Command and Key Presses:**
 ```bash
@@ -70,11 +70,12 @@ Using Vim, I opened the file that required changes.
 vim ListExamples.java
 Pressed: v i m Space L i s t E x a m p l e s . j a v a <Enter>
 ```
-![Image](Lab4-5.png)
+![Image](Lab4-4.png)
+
 
 Within Vim, I navigated to the problematic code segment and performed the necessary edits.
 
-![Image](Lab4-6.png)
+![Image](Lab4-5.png)
 
 Key Presses in Vim:
 ```bash
@@ -97,7 +98,7 @@ java -cp .:"lib/*" org.junit.runner.JUnitCore ListExamplesTests
 Pressed: j a v a Space - c p Space . : " l i b / * " Space o r g . j u n i t . r u n n e r . J U n i t C o r e Space L i s t E x a m p l e s T e s t s <Enter>
 ```
 
-![Image]()
+![Image](Lab4-6.png)
 
 ## Step 9: Commit and Push Changes
 Lastly, I committed the changes and pushed them to the GitHub repository.
@@ -113,7 +114,7 @@ Pressed: g i t Space a d d Space . <Enter> to stage the changes.
 Pressed: g i t Space c o m m i t Space - m Space "Fix index variable in merge function" <Enter> to commit the changes with a message.
 Pressed: g i t Space p u s h Space o r i g i n Space m a i n <Enter> to push the changes to the remote repository.
 ```
-![Image]()
+![Image](Lab4-7.png)
 
 
 ## Conclusion
